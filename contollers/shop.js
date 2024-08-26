@@ -19,12 +19,23 @@ exports.getOrders = (req, res, next) => {
 exports.getCheckout = (req, res, next) => {
   res.render('shop/checkout', { docTitle: 'Checkout', path: '/checkout' });
 };
-exports.getProductDetails = (req, res, next) => {
-  res.render('shop/product-detail', {
-    docTitle: 'Product Info',
-    path: '/products',
+exports.getProduct = (req, res, next) => {
+  const prodId = req.params.productId;
+  Product.findById(prodId, (product) => {
+    res.render('shop/product-detail', {
+      docTitle: 'Product Info - ' + prodId,
+      path: '/products',
+      product: product,
+    });
+    console.log(product);
   });
 };
 exports.getHome = (req, res, next) => {
-  res.render('shop/index', { docTitle: 'Welcome on bookshop', path: '/' });
+  Product.fethAll((products) => {
+    res.render('shop/index', {
+      docTitle: 'Welcome on bookshop',
+      path: '/',
+      prods: products,
+    });
+  });
 };
