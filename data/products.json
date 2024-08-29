@@ -33,5 +33,12 @@
     "description": "Nowa biografia autora bestsellerów „Steve Jobs”, „Leonardo da Vinci”, „Innowatorzy” i „Kod życia”!\r\n„Elon Musk” to zdumiewająco intymna historia najbardziej fascynującego i kontrowersyjnego innowatora naszych czasów.",
     "price": "12",
     "id": "k007"
+  },
+  {
+    "id": "0.0080.892",
+    "title": "Hannah",
+    "imageUrl": "https://s.lubimyczytac.pl/upload/books/5127000/5127173/1177763-352x500.jpg",
+    "description": "Katarzyna Kasmat-Łyskaniuk - To miał być dla Hannah wymarzony sylwester, ale los sprawił, że dziewczyna będzie musiała nauczyć się żyć na nowo. Każdy dzień przepełniają ból i żal. Stworzyła świat, w którym samotność i rozpacz są jej jedynymi prawdziwymi przyjaciółmi.",
+    "price": "8.99"
   }
 ]

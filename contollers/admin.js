@@ -60,7 +60,7 @@ exports.getAdminProducts = (req, res, next) => {
   });
 };
 exports.postDeleteProducts = (req, res, next) => {
-  const id = req.body.id;
-  Product.deleteById(id);
+  const prodId = req.body.id;
+  Product.deleteById(prodId);
   res.redirect('/admin/products');
 };
