@@ -59,3 +59,9 @@ exports.getAdminProducts = (req, res, next) => {
     });
   });
 };
+exports.postDeleteProducts = (req, res, next) => {
+  const id = req.body.id;
+  const product = new Product(id);
+  product.remove();
+  res.redirect('/admin/products');
+};
