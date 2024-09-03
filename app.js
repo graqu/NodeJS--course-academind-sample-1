@@ -15,13 +15,7 @@ app.set('view engine', 'ejs');
 const adminRoutes = require('./routes/admin.js');
 const shopRoutes = require('./routes/shop.js');
 
-db.execute('SELECT * FROM products')
-  .then((result) => {
-    console.log(result);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+
 
 const bodyParse = require('body-parser');
 const exp = require('constants');

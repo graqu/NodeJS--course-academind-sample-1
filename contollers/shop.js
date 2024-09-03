@@ -2,13 +2,15 @@ const Product = require('../models/product.js');
 const Cart = require('../models/cart.js');
 
 exports.getProducts = (req, res, next) => {
-  Product.fethAll((products) => {
-    res.render('shop/product-list', {
-      prods: products,
-      docTitle: 'shop',
-      path: '/products',
-    });
-  });
+  Product.fethAll()
+    .then(([rows, fileData]) => {
+      res.render('shop/product-list', {
+        prods: rows,
+        docTitle: 'shop',
+        path: '/products',
+      });
+    })
+    .catch((err) => console.log(err));
 };
 
 exports.getCart = (req, res, next) => {
@@ -56,21 +58,23 @@ exports.getCheckout = (req, res, next) => {
 };
 exports.getProduct = (req, res, next) => {
   const prodId = req.params.productId;
-  Product.findById(prodId, (product) => {
+  Product.findById(prodId).then(([product]) => {
     res.render('shop/product-detail', {
       docTitle: 'Product Info - ' + prodId,
       path: '/products',
-      product: product,
+      product: product[0],
     });
     console.log(product);
   });
 };
 exports.getHome = (req, res, next) => {
-  Product.fethAll((products) => {
-    res.render('shop/index', {
-      docTitle: 'Welcome on bookshop',
-      path: '/',
-      prods: products,
-    });
-  });
+  Product.fethAll()
+    .then(([rows, filedData]) => {
+      res.render('shop/index', {
+        docTitle: 'Welcome on bookshop',
+        path: '/',
+        prods: rows,
+      });
+    })
+    .catch((err) => console.log(err));
 };
