@@ -1,13 +1,14 @@
 const Product = require('../models/product.js');
 const Cart = require('../models/cart.js');
+const { where } = require('sequelize');
 
 exports.getProducts = (req, res, next) => {
-  Product.fethAll()
-    .then(([rows, fileData]) => {
+  Product.findAll()
+    .then((products) => {
       res.render('shop/product-list', {
-        prods: rows,
         docTitle: 'shop',
         path: '/products',
+        prods: products,
       });
     })
     .catch((err) => console.log(err));
@@ -58,22 +59,22 @@ exports.getCheckout = (req, res, next) => {
 };
 exports.getProduct = (req, res, next) => {
   const prodId = req.params.productId;
-  Product.findById(prodId).then(([product]) => {
+  Product.findByPk(prodId).then((product) => {
     res.render('shop/product-detail', {
       docTitle: 'Product Info - ' + prodId,
       path: '/products',
-      product: product[0],
+      product: product,
     });
     console.log(product);
   });
 };
 exports.getHome = (req, res, next) => {
-  Product.fethAll()
-    .then(([rows, filedData]) => {
+  Product.findAll()
+    .then((products) => {
       res.render('shop/index', {
         docTitle: 'Welcome on bookshop',
         path: '/',
-        prods: rows,
+        prods: products,
       });
     })
     .catch((err) => console.log(err));
