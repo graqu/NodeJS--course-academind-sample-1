@@ -59,14 +59,24 @@ exports.getCheckout = (req, res, next) => {
 };
 exports.getProduct = (req, res, next) => {
   const prodId = req.params.productId;
-  Product.findByPk(prodId).then((product) => {
-    res.render('shop/product-detail', {
-      docTitle: 'Product Info - ' + prodId,
-      path: '/products',
-      product: product,
-    });
-    console.log(product);
-  });
+  // Product.findAll({ where: { id: prodId } })
+  //   .then((products) => {
+  //     res.render('shop/product-detail', {
+  //       docTitle: 'Product Info - ' + prodId,
+  //       path: '/products',
+  //       product: products[0],
+  //     });
+  //   })
+  //   .catch((err) => console.log(err));
+  Product.findByPk(prodId)
+    .then((product) => {
+      res.render('shop/product-detail', {
+        docTitle: 'Product Info - ' + prodId,
+        path: '/products',
+        product: product,
+      });
+    })
+    .catch((err) => console.log(err));
 };
 exports.getHome = (req, res, next) => {
   Product.findAll()
